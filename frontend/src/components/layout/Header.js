@@ -133,10 +133,6 @@ const styles = {
     textDecoration: 'none',
     color: '#333',
   },
-  logo: {
-    textDecoration: 'none',
-    color: '#333',
-  },
   searchForm: {
     display: 'flex',
     flex: 1,

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { login, clearError } from '../../store/slices/authSlice';
+import { login } from '../../store/slices/authSlice';
 import MetaData from '../layout/MetaData';
 
 const Login = () => {

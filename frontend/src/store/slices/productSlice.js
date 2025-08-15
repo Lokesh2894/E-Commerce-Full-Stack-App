@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import API_ENDPOINTS from '../../config/api';
 
 // Async thunks
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (params = {}, { rejectWithValue }) => {
     try {
-      console.log('Making API call to /api/products with params:', params);
-      const response = await axios.get('/api/products', { params });
+      console.log('Making API call to products with params:', params);
+      const response = await axios.get(API_ENDPOINTS.PRODUCTS.ALL, { params });
       console.log('API response:', response.data);
       return response.data;
     } catch (error) {
@@ -21,7 +22,7 @@ export const getProductDetails = createAsyncThunk(
   'products/getProductDetails',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/api/products/${id}`);
+      const response = await axios.get(API_ENDPOINTS.PRODUCTS.DETAILS(id));
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -40,7 +41,7 @@ export const createProduct = createAsyncThunk(
         }
       };
       
-      const response = await axios.post('/api/products/new', productData, config);
+      const response = await axios.post(API_ENDPOINTS.PRODUCTS.ALL + '/new', productData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -59,7 +60,7 @@ export const updateProduct = createAsyncThunk(
         }
       };
       
-      const response = await axios.put(`/api/products/${id}`, productData, config);
+      const response = await axios.put(API_ENDPOINTS.PRODUCTS.DETAILS(id), productData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -78,7 +79,7 @@ export const deleteProduct = createAsyncThunk(
         }
       };
       
-      await axios.delete(`/api/products/${id}`, config);
+      await axios.delete(API_ENDPOINTS.PRODUCTS.DETAILS(id), config);
       return id;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -97,7 +98,7 @@ export const createProductReview = createAsyncThunk(
         }
       };
       
-      const response = await axios.put('/api/products/review', reviewData, config);
+      const response = await axios.put(API_ENDPOINTS.PRODUCTS.ALL + '/review', reviewData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

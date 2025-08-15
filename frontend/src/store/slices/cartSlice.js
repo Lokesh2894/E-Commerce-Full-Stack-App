@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import API_ENDPOINTS from '../../config/api';
 
 // Async thunks
 export const getCart = createAsyncThunk(
@@ -13,7 +14,7 @@ export const getCart = createAsyncThunk(
         }
       };
       
-      const response = await axios.get('/api/cart', config);
+      const response = await axios.get(API_ENDPOINTS.CART.GET, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -32,7 +33,7 @@ export const addToCart = createAsyncThunk(
         }
       };
       
-      const response = await axios.post('/api/cart/add', itemData, config);
+      const response = await axios.post(API_ENDPOINTS.CART.ADD, itemData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -51,7 +52,7 @@ export const updateCartItem = createAsyncThunk(
         }
       };
       
-      const response = await axios.put('/api/cart/update', updateData, config);
+      const response = await axios.put(API_ENDPOINTS.CART.UPDATE, updateData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -70,7 +71,7 @@ export const removeFromCart = createAsyncThunk(
         }
       };
       
-      const response = await axios.delete(`/api/cart/remove/${productId}`, config);
+      const response = await axios.delete(API_ENDPOINTS.CART.REMOVE(productId), config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -89,7 +90,7 @@ export const clearCart = createAsyncThunk(
         }
       };
       
-      const response = await axios.delete('/api/cart/clear', config);
+      const response = await axios.delete(API_ENDPOINTS.CART.GET + '/clear', config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -108,7 +109,7 @@ export const getCartTotal = createAsyncThunk(
         }
       };
       
-      const response = await axios.get('/api/cart/total', config);
+      const response = await axios.get(API_ENDPOINTS.CART.GET + '/total', config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

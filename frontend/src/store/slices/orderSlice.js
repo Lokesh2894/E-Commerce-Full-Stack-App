@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import API_ENDPOINTS from '../../config/api';
 
 // Async thunks
 export const createOrder = createAsyncThunk(
@@ -13,7 +14,7 @@ export const createOrder = createAsyncThunk(
         }
       };
       
-      const response = await axios.post('/api/orders/new', orderData, config);
+      const response = await axios.post(API_ENDPOINTS.ORDERS.CREATE, orderData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -32,7 +33,7 @@ export const getOrderDetails = createAsyncThunk(
         }
       };
       
-      const response = await axios.get(`/api/orders/${id}`, config);
+      const response = await axios.get(API_ENDPOINTS.ORDERS.DETAILS(id), config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -51,7 +52,7 @@ export const getMyOrders = createAsyncThunk(
         }
       };
       
-      const response = await axios.get('/api/orders/me/my', config);
+      const response = await axios.get(API_ENDPOINTS.ORDERS.MY_ORDERS, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -70,7 +71,7 @@ export const processCheckout = createAsyncThunk(
         }
       };
       
-      const response = await axios.post('/api/orders/checkout', { shippingInfo }, config);
+      const response = await axios.post(API_ENDPOINTS.ORDERS.CREATE.replace('/new', '/checkout'), { shippingInfo }, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -90,7 +91,7 @@ export const getAllOrders = createAsyncThunk(
         }
       };
       
-      const response = await axios.get('/api/orders/admin/orders', config);
+      const response = await axios.get(API_ENDPOINTS.ORDERS.MY_ORDERS.replace('/me', '/admin/orders'), config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -109,7 +110,7 @@ export const updateOrder = createAsyncThunk(
         }
       };
       
-      const response = await axios.put(`/api/orders/admin/order/${id}`, { status }, config);
+      await axios.put(API_ENDPOINTS.ORDERS.MY_ORDERS.replace('/me', `/admin/order/${id}`), { status }, config);
       return { id, status };
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -128,7 +129,7 @@ export const deleteOrder = createAsyncThunk(
         }
       };
       
-      await axios.delete(`/api/orders/admin/order/${id}`, config);
+      await axios.delete(API_ENDPOINTS.ORDERS.MY_ORDERS.replace('/me', `/admin/order/${id}`), config);
       return id;
     } catch (error) {
       return rejectWithValue(error.response.data);

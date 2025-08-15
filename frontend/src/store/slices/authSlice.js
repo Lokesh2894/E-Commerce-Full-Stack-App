@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import API_ENDPOINTS from '../../config/api';
 
 // Async thunks
 export const register = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await axios.post(API_ENDPOINTS.AUTH.REGISTER, userData);
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
@@ -19,7 +20,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/auth/login', userData);
+      const response = await axios.post(API_ENDPOINTS.AUTH.LOGIN, userData);
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
@@ -43,7 +44,7 @@ export const loadUser = createAsyncThunk(
         }
       };
       
-      const response = await axios.get('/api/auth/me', config);
+      const response = await axios.get(API_ENDPOINTS.AUTH.ME, config);
       return response.data;
     } catch (error) {
       localStorage.removeItem('token');
@@ -60,7 +61,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.get('/api/auth/logout');
+      await axios.get(API_ENDPOINTS.AUTH.LOGOUT);
       localStorage.removeItem('token');
       return {};
     } catch (error) {

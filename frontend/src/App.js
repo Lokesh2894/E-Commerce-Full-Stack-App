@@ -29,7 +29,7 @@ import ProtectedRoute from './components/route/ProtectedRoute';
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated, loading } = useSelector(state => state.auth);
+  const { isAuthenticated } = useSelector(state => state.auth);
   const { error } = useSelector(state => state.auth);
 
   useEffect(() => {

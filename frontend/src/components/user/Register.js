@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { register, clearError } from '../../store/slices/authSlice';
+import { register } from '../../store/slices/authSlice';
 import MetaData from '../layout/MetaData';
 
 const Register = () => {

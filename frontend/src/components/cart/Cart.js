@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 import { getCart, updateCartItem, removeFromCart } from '../../store/slices/cartSlice';
 import { FaTrash, FaMinus, FaPlus } from 'react-icons/fa';
 import MetaData from '../layout/MetaData';

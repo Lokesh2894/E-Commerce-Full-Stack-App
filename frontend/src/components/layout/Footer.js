@@ -7,9 +7,9 @@ const Footer = () => {
         <div style={styles.content}>
           <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
           <div style={styles.links}>
-            <a href="#" style={styles.link}>Privacy Policy</a>
-            <a href="#" style={styles.link}>Terms of Service</a>
-            <a href="#" style={styles.link}>Contact Us</a>
+            <a href="/privacy" style={styles.link}>Privacy Policy</a>
+            <a href="/terms" style={styles.link}>Terms of Service</a>
+            <a href="/contact" style={styles.link}>Contact Us</a>
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData';
 
 const UpdateProfile = () => {
-  const { user } = useSelector(state => state.auth);
+
 
   return (
     <>
